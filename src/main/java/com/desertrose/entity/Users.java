@@ -2,9 +2,11 @@ package com.desertrose.entity;
 
 import com.desertrose.enums.Role;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 
+@Data
 @Entity
 @Table(name = "users")
 public class Users {
@@ -23,8 +25,8 @@ public class Users {
     @Column(name = "password", nullable = false, length = 255)
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false, length = 50)
     private Role role;
 
     @Column(name = "created_at", updatable = false)

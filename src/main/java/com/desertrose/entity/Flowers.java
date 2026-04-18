@@ -3,7 +3,6 @@ package com.desertrose.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.ai.moderation.Categories;
 
 import java.time.LocalDateTime;
 
@@ -19,7 +18,7 @@ public class Flowers {
     @Column(name = "flower_name", nullable = false, length = 150, unique = true)
     private String flowerName;
 
-    @Column(name = "price", nullable = false, precision = 10, scale = 2)
+    @Column(name = "price", nullable = false)
     private Double price;
 
     @Column(name = "stock", nullable = false)
@@ -28,7 +27,7 @@ public class Flowers {
     @Column(name = "image_url", length = 255)
     private String imageUrl;
 
-    @Column(name = "description", columnDefinition = "NVARCHAR(MAX)")
+    @Column(name = "description")
     private String description;
 
     @ManyToOne
