@@ -1,49 +1,80 @@
 package com.desertrose.service.impl;
 
-
+import com.desertrose.dto.LoginRequest;
+import com.desertrose.dto.RegisterRequest;
+import com.desertrose.dto.UserResponse;
 import com.desertrose.entity.Users;
 import com.desertrose.enums.Role;
+import com.desertrose.repository.UsersRepository;
 import com.desertrose.service.AuthService;
-import com.desertrose.service.UserService;
-import org.springframework.security.core.userdetails.User;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-@Service
-public class AuthServiceImpl implements AuthService, UserDetailsService {
+import java.util.List;
 
-    private final UserService userService;
+@Service
+@RequiredArgsConstructor
+public class AuthServiceImpl implements AuthService {
+
+    private final UsersRepository usersRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public AuthServiceImpl(UserService userService, PasswordEncoder passwordEncoder) {
-        this.userService = userService;
-        this.passwordEncoder = passwordEncoder;
+    @Override
+    public UserResponse login(LoginRequest request) {
+        Users user = usersRepository.findByUsername(request.getUsername())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            throw new RuntimeException("Wrong password");
+        }
+
+        UserResponse response = new UserResponse();
+        response.setUserId(user.getUserId());
+        response.setUsername(user.getUsername());
+        response.setEmail(user.getEmail());
+        response.setRole(user.getRole());
+
+        return response;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Users user = usersRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-        Users user = userService.findByUsername(username);
-
-        return User.builder()
-                .username(user.getUsername())
-                .password(user.getPassword())
-                .roles(user.getRole().name())
-                .build();
+        return new org.springframework.security.core.userdetails.User(
+                user.getUsername(),
+                user.getPassword(),
+                List.of(new SimpleGrantedAuthority("ROLE_USER"))
+        );
     }
 
     @Override
-    public Users register(String username, String password, String email, Role role) {
+    public UserResponse register(RegisterRequest request) {
+
+
+        if (usersRepository.findByUsername(request.getUsername()).isPresent()) {
+            throw new RuntimeException("Username already exists");
+        }
 
         Users user = new Users();
-        user.setUsername(username);
-        user.setEmail(email);
-        user.setPassword(passwordEncoder.encode(password));
-        user.setRole(role);
+        user.setUsername(request.getUsername());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setEmail(request.getEmail());
+        user.setRole(Role.KHACH_HANG_MEMBER);
 
-        return userService.save(user);
+        Users savedUser = usersRepository.save(user);
+
+        UserResponse response = new UserResponse();
+        response.setUserId(savedUser.getUserId());
+        response.setUsername(savedUser.getUsername());
+        response.setEmail(savedUser.getEmail());
+        response.setRole(savedUser.getRole());
+
+        return response;
     }
 }

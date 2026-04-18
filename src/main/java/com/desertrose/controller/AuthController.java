@@ -1,38 +1,28 @@
 package com.desertrose.controller;
 
-import com.desertrose.enums.Role;
+import com.desertrose.dto.LoginRequest;
+import com.desertrose.dto.RegisterRequest;
+import com.desertrose.dto.UserResponse;
+import com.desertrose.entity.Users;
 import com.desertrose.service.AuthService;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
+@RequestMapping("/api/auth")
+@RequiredArgsConstructor
+@CrossOrigin(origins = "*") // cho React gọi
 public class AuthController {
 
     private final AuthService authService;
 
-    public AuthController(AuthService authService) {
-        this.authService = authService;
-    }
-
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
-
-    @GetMapping("/register")
-    public String registerPage() {
-        return "register";
+    @PostMapping("/login")
+    public UserResponse login(@RequestBody LoginRequest request) {
+        return authService.login(request);
     }
 
     @PostMapping("/register")
-    public String register(
-            @RequestParam String username,
-            @RequestParam String password,
-            @RequestParam String email
-    ) {
-        authService.register(username, password, email, Role.KHACH_HANG_MEMBER);
-        return "redirect:/login";
+    public UserResponse register(@RequestBody RegisterRequest request) {
+        return authService.register(request);
     }
 }
