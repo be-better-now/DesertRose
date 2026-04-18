@@ -1,3 +1,41 @@
 spring:
   application:
-    name: desertrose
+    name: desertflower
+
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=DESERT_ROSE;encrypt=true;trustServerCertificate=true
+    username: sa
+    password: 123456
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+  jpa:
+    hibernate:
+      ddl-auto: update   # dev thì dùng update, production nên dùng validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.SQLServerDialect
+
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+
+server:
+  port: 8080
+
+## JWT config (tự custom trong code)
+#jwt:
+#  secret: mysecretkey1234567890
+#  expiration: 86400000  # 1 ngày (ms)
+#
+## logging
+#logging:
+#  level:
+#    org.springframework: INFO
+#    org.hibernate.SQL: DEBUG
+#    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+#
+## CORS (nếu cần)
+#cors:
+#  allowed-origins: http://localhost:5173
