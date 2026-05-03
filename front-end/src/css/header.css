@@ -1,0 +1,87 @@
+.home-header{
+    width:100%;
+    padding:24px 70px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:relative;
+    z-index:2;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:22px;
+    font-weight:500;
+    color:#173324;
+    cursor:pointer;
+}
+
+.brand span{
+    font-family:'Cormorant Garamond',serif;
+    font-size:34px;
+}
+
+.home-header nav{
+    display:flex;
+    gap:34px;
+}
+
+.home-header nav a{
+    color:#557460;
+    font-size:14px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    transition:.25s;
+}
+
+.home-header nav a:hover{
+    color:#173324;
+}
+
+.header-right{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.user-chip{
+    padding:10px 16px;
+    border-radius:999px;
+    background:#ffffffa8;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:14px;
+    color:#173324;
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+}
+
+.logout-btn,
+.login-btn{
+    border:none;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.logout-btn{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:#173324;
+    color:#fff;
+    display:grid;
+    place-items:center;
+}
+
+.logout-btn:hover{
+    transform:translateY(-2px);
+}
+
+.login-btn{
+    padding:12px 18px;
+    border-radius:999px;
+    background:#173324;
+    color:#fff;
+}

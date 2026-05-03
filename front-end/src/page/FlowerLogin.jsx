@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "../css/flower-login.css";
 
 /* ─── Falling petal data (static so no re-render flicker) ─── */
 const PETALS = [
@@ -15,167 +17,6 @@ const PETALS = [
     { id: 10, left: "63%", delay: "3.2s",  dur: "10s", w: 10, h: 7  },
     { id: 11, left: "85%", delay: "9.5s",  dur: "11s", w: 13, h: 9  },
 ];
-
-/* ─── Global CSS + keyframes ─── */
-const CSS = `
-  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@200;300;400;500&display=swap');
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  @keyframes petalFall {
-    0%   { transform: translateY(-30px) rotate(0deg)   translateX(0px);   opacity: 0; }
-    8%   { opacity: 0.75; }
-    50%  { transform: translateY(48vh)  rotate(380deg)  translateX(28px);  }
-    92%  { opacity: 0.35; }
-    100% { transform: translateY(102vh) rotate(740deg)  translateX(-18px); opacity: 0; }
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(28px); }
-    to   { opacity: 1; transform: translateY(0);    }
-  }
-
-  @keyframes floatBob {
-    0%, 100% { transform: translateY(0px);  }
-    50%      { transform: translateY(-9px); }
-  }
-
-  @keyframes revealLine {
-    from { transform: scaleX(0); }
-    to   { transform: scaleX(1); }
-  }
-
-  @keyframes spinIn {
-    from { transform: rotate(-120deg) scale(0.3); opacity: 0; }
-    to   { transform: rotate(0deg)   scale(1);   opacity: 1; }
-  }
-
-  .petal {
-    position: fixed;
-    border-radius: 50% 0 50% 0;
-    background: rgba(200, 112, 138, 0.48);
-    animation: petalFall linear infinite;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .botanical-icon {
-    animation: spinIn 1s cubic-bezier(.34,1.56,.64,1) forwards,
-               floatBob 5s ease-in-out 1s infinite;
-    display: block;
-  }
-
-  .form-fade {
-    animation: fadeUp 0.85s ease forwards;
-    animation-delay: 0.3s;
-    opacity: 0;
-  }
-
-  /* Field */
-  .f-group {
-    position: relative;
-    margin-bottom: 30px;
-  }
-
-  .f-label {
-    display: block;
-    font-family: 'Jost', sans-serif;
-    font-size: 10.5px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #8A9E8A;
-    margin-bottom: 9px;
-  }
-
-  .f-input {
-    width: 100%;
-    padding: 10px 0 10px 2px;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid #CBBFA8;
-    font-family: 'Jost', sans-serif;
-    font-size: 15px;
-    font-weight: 300;
-    color: #1C3428;
-    outline: none;
-    letter-spacing: 0.03em;
-    transition: border-color 0.3s ease;
-  }
-
-  .f-input::placeholder { color: #B8C8B8; }
-  .f-input:focus        { border-bottom-color: transparent; }
-
-  .f-bar {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 1.5px;
-    background: #1C3428;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.35s ease;
-    pointer-events: none;
-  }
-
-  .f-input:focus ~ .f-bar { transform: scaleX(1); }
-
-  /* Button */
-  .btn-enter {
-    width: 100%;
-    padding: 15px 24px;
-    background: #1C3428;
-    color: #EDE5D4;
-    border: none;
-    font-family: 'Jost', sans-serif;
-    font-size: 11.5px;
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .btn-enter::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);
-    transform: translateX(-100%);
-    transition: transform 0.5s ease;
-  }
-
-  .btn-enter:hover::after  { transform: translateX(100%); }
-  .btn-enter:hover         { background: #284A38; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(28,52,40,0.30); }
-  .btn-enter:active        { transform: translateY(0); box-shadow: none; }
-
-  /* Aux links */
-  .aux { color: #8A9E8A; text-decoration: none; font-family: 'Jost',sans-serif; font-size: 12.5px; font-weight: 300; letter-spacing: 0.04em; transition: color 0.2s; }
-  .aux:hover { color: #1C3428; }
-
-  /* Social btn */
-  .social-btn {
-    flex: 1;
-    padding: 11px 0;
-    background: transparent;
-    border: 0.5px solid #C8B898;
-    font-family: 'Jost', sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    color: #5A7A5A;
-    cursor: pointer;
-    letter-spacing: 0.06em;
-    transition: background 0.25s ease, color 0.25s ease;
-  }
-
-  .social-btn:hover { background: #EEE6D8; color: #1C3428; }
-
-  @media (max-width: 768px) {
-    .botanical-panel { display: none !important; }
-    .login-side       { width: 100% !important;   }
-  }
-`;
 
 /* ─── Botanical SVG illustration ─── */
 function Botanical() {
@@ -341,50 +182,56 @@ function RoseIcon() {
 
 /* ─── Main component ─── */
 export default function FlowerLogin() {
+    const navigate = useNavigate();
+
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loading,  setLoading]  = useState(false);
-    const [done,     setDone]     = useState(false);
+    const [error,    setError]    = useState("");
 
     const handleLogin = async () => {
-        if (!username || !password) {
-            alert("Nhập đủ đi m");
+        if (loading) return;
+
+        // Validate fields
+        if (!username.trim() || !password.trim()) {
+            setError("Vui lòng nhập đầy đủ tài khoản và mật khẩu.");
             return;
         }
+
+        setLoading(true);
+        setError("");
 
         try {
             const res = await fetch("http://localhost:8080/api/auth/login", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    username,
-                    password
-                })
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username: username.trim(), password }),
             });
 
             const data = await res.json();
 
             if (!res.ok) {
-                throw new Error(data);
+                // Backend trả lỗi (401, 400, v.v.)
+                setError(data.message || "Tài khoản hoặc mật khẩu không đúng.");
+                return;
             }
 
-            console.log("User:", data);
+            // Lưu thông tin user (token + user object nếu có)
+            if (data.token)    localStorage.setItem("token", data.token);
+            if (data.user)     localStorage.setItem("user", JSON.stringify(data.user));
 
-            alert("Login successfully");
-
-            // lưu user
-            localStorage.setItem("user", JSON.stringify(data));
+            // Chuyển về trang home
+            navigate("/");
 
         } catch (err) {
-            alert("Login fail: " + err.message);
+            setError("Không thể kết nối đến máy chủ. Vui lòng thử lại.");
+        } finally {
+            setLoading(false);
         }
     };
 
     return (
         <div style={{ display: "flex", height: "100vh", overflow: "hidden" }}>
-            <style>{CSS}</style>
 
             {/* ── Falling petals (global overlay) ── */}
             {PETALS.map(p => (
@@ -399,8 +246,8 @@ export default function FlowerLogin() {
             ))}
 
             {/* ══════════════════════════════════════
-          LEFT — Botanical panel
-      ══════════════════════════════════════ */}
+                LEFT — Botanical panel
+            ══════════════════════════════════════ */}
             <div
                 className="botanical-panel"
                 style={{
@@ -434,8 +281,8 @@ export default function FlowerLogin() {
             </div>
 
             {/* ══════════════════════════════════════
-          RIGHT — Login panel
-      ══════════════════════════════════════ */}
+                RIGHT — Login panel
+            ══════════════════════════════════════ */}
             <div
                 className="login-side"
                 style={{
@@ -498,7 +345,7 @@ export default function FlowerLogin() {
                             className="f-input"
                             type="text"
                             value={username}
-                            onChange={e => setUsername(e.target.value)}
+                            onChange={e => { setUsername(e.target.value); setError(""); }}
                             placeholder="your_username"
                             onKeyDown={e => e.key === "Enter" && handleLogin()}
                         />
@@ -512,12 +359,26 @@ export default function FlowerLogin() {
                             className="f-input"
                             type="password"
                             value={password}
-                            onChange={e => setPassword(e.target.value)}
+                            onChange={e => { setPassword(e.target.value); setError(""); }}
                             placeholder="••••••••"
                             onKeyDown={e => e.key === "Enter" && handleLogin()}
                         />
                         <div className="f-bar"/>
                     </div>
+
+                    {/* Error message */}
+                    {error && (
+                        <p style={{
+                            fontFamily: "'Jost', sans-serif",
+                            fontSize: "12px", fontWeight: 300,
+                            color: "#B84848",
+                            marginBottom: "16px",
+                            letterSpacing: "0.02em",
+                            lineHeight: 1.5,
+                        }}>
+                            {error}
+                        </p>
+                    )}
 
                     {/* Remember + forgot */}
                     <div style={{
@@ -536,12 +397,8 @@ export default function FlowerLogin() {
                     </div>
 
                     {/* CTA button */}
-                    <button className="btn-enter" onClick={handleLogin}>
-                        {done
-                            ? "✦  Welcome to the Garden"
-                            : loading
-                                ? "Opening the gate…"
-                                : "Enter the Garden  →"}
+                    <button className="btn-enter" onClick={handleLogin} disabled={loading}>
+                        {loading ? "Opening the gate…" : "Enter the Garden  →"}
                     </button>
 
                     {/* Divider */}

@@ -36,6 +36,6 @@ server:
 #    org.hibernate.SQL: DEBUG
 #    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 #
-## CORS (nếu cần)
-#cors:
-#  allowed-origins: http://localhost:5173
+# CORS (nếu cần)
+cors:
+  allowed-origins: http://localhost:5173
