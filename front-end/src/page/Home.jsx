@@ -26,21 +26,21 @@ const PETALS = Array.from({ length: 12 }, (_, i) => ({
 const products = [
     {
         name: "Desert Rose Classic",
-        price: "$39",
         desc: "Soft blush roses with eucalyptus leaves",
-        tag: "Best Seller"
+        tag: "Best Seller",
+        img: "/images/rose1.jpg"
     },
     {
         name: "Golden Garden Bloom",
-        price: "$49",
         desc: "Luxury bouquet for elegant moments",
-        tag: "Premium"
+        tag: "Premium",
+        img: "/images/rose2.jpg"
     },
     {
         name: "Spring Whisper",
-        price: "$35",
         desc: "Fresh pastel flowers, gentle fragrance",
-        tag: "New"
+        tag: "New",
+        img: "/images/rose3.jpg"
     }
 ];
 
@@ -82,101 +82,111 @@ export default function Home() {
 
             {/* Hero */}
             <section className="hero">
-                <div className="hero-left">
-                    <p className="mini-title">FLOWER BOUTIQUE</p>
+                <div className="container hero-inner">
+                    <div className="hero-left">
+                        <p className="mini-title">FLOWER BOUTIQUE</p>
 
-                    <h1>
-                        Fresh Blooms <br />
-                        for Every Moment
-                    </h1>
+                        <h1>
+                            Fresh Blooms <br />
+                            for Every Moment
+                        </h1>
 
-                    <p className="hero-desc">
-                        Elegant flowers crafted with love. Bring beauty,
-                        fragrance and emotion into every occasion.
-                    </p>
+                        <p className="hero-desc">
+                            Elegant flowers crafted with love. Bring beauty,
+                            fragrance and emotion into every occasion.
+                        </p>
 
-                    <div className="hero-actions">
-                        <button className="primary-btn">
-                            Shop Now <ArrowRight size={16} />
-                        </button>
+                        <div className="hero-actions">
+                            <button className="primary-btn">
+                                Shop Now <ArrowRight size={16} />
+                            </button>
 
-                        <button className="ghost-btn">
-                            View Collection
-                        </button>
+                            <button className="ghost-btn">
+                                View Collection
+                            </button>
+                        </div>
+
+                        <div className="stats">
+                            <div>
+                                <h3>5K+</h3>
+                                <span>Happy Clients</span>
+                            </div>
+                            <div>
+                                <h3>120+</h3>
+                                <span>Bouquet Types</span>
+                            </div>
+                            <div>
+                                <h3>24/7</h3>
+                                <span>Delivery</span>
+                            </div>
+                        </div>
                     </div>
 
-                    <div className="stats">
-                        <div>
-                            <h3>5K+</h3>
-                            <span>Happy Clients</span>
+                    <div className="hero-right">
+                        <div className="flower-card">
+                            <img
+                                src="/images/bouquet.jpg"
+                                alt="Flower Bouquet"
+                                className="hero-image"
+                            />
                         </div>
-                        <div>
-                            <h3>120+</h3>
-                            <span>Bouquet Types</span>
-                        </div>
-                        <div>
-                            <h3>24/7</h3>
-                            <span>Delivery</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="hero-right">
-                    <div className="flower-card">
-                        <Flower2 size={80} />
                     </div>
                 </div>
             </section>
 
             {/* Features */}
             <section className="features">
-                <div className="feature-box">
-                    <Truck size={24} />
-                    <h4>Fast Delivery</h4>
-                    <p>Fresh flowers delivered same day</p>
-                </div>
+                <div className="container features-inner">
+                    <div className="feature-box">
+                        <Truck size={24} />
+                        <h4>Fast Delivery</h4>
+                        <p>Fresh flowers delivered same day</p>
+                    </div>
 
-                <div className="feature-box">
-                    <Heart size={24} />
-                    <h4>Made with Love</h4>
-                    <p>Handcrafted premium bouquets</p>
-                </div>
+                    <div className="feature-box">
+                        <Heart size={24} />
+                        <h4>Made with Love</h4>
+                        <p>Handcrafted premium bouquets</p>
+                    </div>
 
-                <div className="feature-box">
-                    <Sparkles size={24} />
-                    <h4>Luxury Style</h4>
-                    <p>Elegant wrapping & design</p>
+                    <div className="feature-box">
+                        <Sparkles size={24} />
+                        <h4>Luxury Style</h4>
+                        <p>Elegant wrapping & design</p>
+                    </div>
                 </div>
             </section>
 
             {/* Products */}
             <section className="products">
-                <div className="section-head">
-                    <p>OUR COLLECTION</p>
-                    <h2>Popular Bouquets</h2>
-                </div>
+                <div className="container">
+                    <div className="section-head">
+                        <p>OUR COLLECTION</p>
+                        <h2>Popular Bouquets</h2>
+                    </div>
 
-                <div className="product-grid">
-                    {products.map((item, i) => (
-                        <div className="product-card" key={i}>
-                            <div className="product-icon">
-                                <Flower2 size={38} />
+                    <div className="product-grid">
+                        {products.map((item, i) => (
+                            <div className="product-card" key={i}>
+                                <div className="product-img-wrap">
+                                    <img src={item.img} alt={item.name} />
+                                    <span className="tag">{item.tag}</span>
+                                </div>
+
+                                <div className="product-body">
+                                    <h3>{item.name}</h3>
+                                    <p className="product-desc">{item.desc}</p>
+
+                                    <button className="view-collection-btn">
+                                        View Collection
+                                        <span className="arrow-circle">
+                                            <ArrowRight size={14} />
+                                        </span>
+                                    </button>
+                                </div>
                             </div>
-
-                            <span className="tag">{item.tag}</span>
-
-                            <h3>{item.name}</h3>
-                            <p>{item.desc}</p>
-
-                            <div className="product-bottom">
-                                <strong>{item.price}</strong>
-
-                                <button>
-                                    <ShoppingBag size={16} />
-                                </button>
-                            </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             </section>
 

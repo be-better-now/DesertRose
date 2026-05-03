@@ -16,6 +16,16 @@ a{
 }
 
 /* =========================
+   Centered content container
+========================= */
+.container{
+    width:100%;
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 70px;
+}
+
+/* =========================
    Falling petals
 ========================= */
 @keyframes petalFall{
@@ -58,14 +68,32 @@ a{
 /* =========================
    Hero
 ========================= */
+
+.hero-image {
+    width: 100%;
+    max-width: 500px;
+    object-fit: contain;
+    border-radius: 60px;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0px); }
+}
+
 .hero{
-    padding:50px 70px 30px;
+    padding:50px 0 30px;
+    width:100%;
+    position:relative;
+    z-index:2;
+}
+
+.hero-inner{
     display:grid;
     grid-template-columns:1.1fr .9fr;
     align-items:center;
     gap:40px;
-    position:relative;
-    z-index:2;
 }
 
 .mini-title{
@@ -95,6 +123,7 @@ a{
     margin-top:30px;
     display:flex;
     gap:16px;
+    justify-content:center;
 }
 
 .primary-btn,
@@ -130,6 +159,7 @@ a{
     margin-top:38px;
     display:flex;
     gap:45px;
+    justify-content:center;
 }
 
 .stats h3{
@@ -147,30 +177,21 @@ a{
     justify-content:center;
 }
 
-.flower-card{
-    width:420px;
-    height:420px;
-    border-radius:38px;
-    background:
-            radial-gradient(circle at top, rgba(212,120,146,.35), transparent 35%),
-            linear-gradient(145deg,#173324,#284a38);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#f3e7d8;
-    box-shadow:0 25px 60px rgba(23,51,36,.22);
-}
 
 /* =========================
    Features
 ========================= */
 .features{
-    padding:20px 70px;
+    padding:20px 0;
+    width:100%;
+    position:relative;
+    z-index:2;
+}
+
+.features-inner{
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:22px;
-    position:relative;
-    z-index:2;
 }
 
 .feature-box{
@@ -196,7 +217,8 @@ a{
    Products
 ========================= */
 .products{
-    padding:60px 70px 80px;
+    padding:60px 0 80px;
+    width:100%;
     position:relative;
     z-index:2;
 }
@@ -215,76 +237,150 @@ a{
 }
 
 .product-grid{
-    margin-top:28px;
+    margin-top:40px;
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:24px;
+    gap:28px;
 }
 
+/* ── Card shell ── */
 .product-card{
-    background:#ffffffcf;
+    background:#fff;
     border-radius:28px;
-    padding:26px;
-    box-shadow:0 18px 30px rgba(0,0,0,.05);
-    transition:.25s;
+    overflow:hidden;
+    box-shadow:0 8px 32px rgba(23,51,36,.07);
+    transition:transform .4s cubic-bezier(.22,1,.36,1),
+               box-shadow .4s cubic-bezier(.22,1,.36,1);
+    cursor:pointer;
+    display:flex;
+    flex-direction:column;
 }
 
 .product-card:hover{
-    transform:translateY(-6px);
+    transform:translateY(-10px);
+    box-shadow:0 28px 56px rgba(23,51,36,.14);
 }
 
-.product-icon{
-    width:72px;
-    height:72px;
-    border-radius:20px;
-    display:grid;
-    place-items:center;
-    background:#173324;
-    color:#f7ecdf;
-    margin-bottom:16px;
+/* ── Image wrapper ── */
+.product-img-wrap{
+    position:relative;
+    width:100%;
+    height:260px;
+    overflow:hidden;
 }
 
-.tag{
-    display:inline-block;
-    font-size:11px;
-    letter-spacing:.1em;
+.product-img-wrap img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .6s cubic-bezier(.22,1,.36,1);
+    display:block;
+}
+
+.product-card:hover .product-img-wrap img{
+    transform:scale(1.08);
+}
+
+/* Tag badge on image */
+.product-img-wrap .tag{
+    position:absolute;
+    top:16px;
+    left:16px;
+    background:rgba(255,255,255,.88);
+    backdrop-filter:blur(8px);
+    border:1px solid rgba(181,106,132,.25);
     color:#b56a84;
-    margin-bottom:10px;
+    font-size:10px;
+    letter-spacing:.15em;
+    font-weight:500;
+    padding:5px 12px;
+    border-radius:999px;
+    margin:0;
+}
+
+/* Subtle gradient overlay bottom of image */
+.product-img-wrap::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to bottom,transparent 55%,rgba(23,51,36,.18) 100%);
+    pointer-events:none;
+}
+
+/* ── Card body ── */
+.product-body{
+    padding:22px 24px 24px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    flex:1;
 }
 
 .product-card h3{
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px;
+    font-weight:600;
     color:#173324;
-    margin-bottom:10px;
+    line-height:1.2;
+    margin:0;
 }
 
-.product-card p{
-    font-size:14px;
+.product-card .product-desc{
+    font-size:13.5px;
     color:#6d8375;
     line-height:1.7;
+    margin:0;
 }
 
-.product-bottom{
-    margin-top:18px;
-    display:flex;
-    justify-content:space-between;
+/* ── View Collection link ── */
+.view-collection-btn{
+    margin-top:14px;
+    display:inline-flex;
     align-items:center;
-}
-
-.product-bottom strong{
-    font-size:24px;
+    gap:8px;
+    font-family:'Jost',sans-serif;
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:.06em;
     color:#173324;
+    background:none;
+    border:none;
+    padding:0;
+    cursor:pointer;
+    position:relative;
+    width:fit-content;
 }
 
-.product-bottom button{
-    width:42px;
-    height:42px;
-    border:none;
+.view-collection-btn::after{
+    content:'';
+    position:absolute;
+    bottom:-2px;
+    left:0;
+    width:0;
+    height:1px;
+    background:#173324;
+    transition:width .3s ease;
+}
+
+.product-card:hover .view-collection-btn::after{
+    width:100%;
+}
+
+.view-collection-btn .arrow-circle{
+    width:30px;
+    height:30px;
     border-radius:50%;
     background:#173324;
-    color:#fff;
+    color:#f7ecdf;
     display:grid;
     place-items:center;
-    cursor:pointer;
+    transition:transform .3s ease, background .3s ease;
+    flex-shrink:0;
+}
+
+.product-card:hover .view-collection-btn .arrow-circle{
+    transform:translateX(4px);
+    background:#b56a84;
 }
 
 
@@ -292,12 +388,12 @@ a{
    Responsive
 ========================= */
 @media(max-width:1100px){
-    .hero{
+    .hero-inner{
         grid-template-columns:1fr;
     }
 
     .product-grid,
-    .features{
+    .features-inner{
         grid-template-columns:1fr;
     }
 
@@ -308,11 +404,7 @@ a{
 }
 
 @media(max-width:768px){
-    .home-header,
-    .hero,
-    .features,
-    .products,
-    .footer{
+    .container{
         padding-left:22px;
         padding-right:22px;
     }
