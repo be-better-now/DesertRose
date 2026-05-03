@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Jost:wght@300;400;500;600&display=swap');
+
+/* =========================
+   Page
+========================= */
+.bouquets-page {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top left, rgba(59, 98, 71, .18), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(212, 120, 146, .10), transparent 30%),
+        linear-gradient(135deg, #f8f3e9, #f6efe2, #f9f7f1);
+    font-family: 'Montserrat', sans-serif;
+    color: #1d3327;
+}
+
+/* =========================
+   Hero / Heading
+========================= */
+.bouquets-hero {
+    text-align: center;
+    padding: 60px 70px 40px;
+}
+
+.bouquets-mini {
+    font-size: 12px;
+    letter-spacing: .28em;
+    color: #8ea28f;
+    margin-bottom: 14px;
+}
+
+.bouquets-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px;
+    font-weight: 400;
+    color: #173324;
+    line-height: 1;
+    margin: 0 0 16px;
+}
+
+.bouquets-desc {
+    font-size: 15px;
+    color: #6d8375;
+    line-height: 1.8;
+}
+
+/* =========================
+   Grid
+========================= */
+.bouquets-grid-wrap {
+    padding: 0 0 80px;
+}
+
+.bouquets-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 10px;
+}
+
+/* =========================
+   Cards — reuse homepage styles
+   (product-card, product-img-wrap, tag,
+    product-body, view-collection-btn, arrow-circle)
+   These classes are already defined in home.css.
+   If bouquets.css is loaded standalone, duplicate them here:
+========================= */
+.product-card {
+    background: #fff;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(23, 51, 36, .07);
+    transition: transform .4s cubic-bezier(.22, 1, .36, 1),
+                box-shadow .4s cubic-bezier(.22, 1, .36, 1);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 28px 56px rgba(23, 51, 36, .14);
+}
+
+.product-img-wrap {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    background: #ede8df;
+}
+
+.product-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .6s cubic-bezier(.22, 1, .36, 1);
+    display: block;
+}
+
+.product-card:hover .product-img-wrap img {
+    transform: scale(1.08);
+}
+
+.product-img-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 55%, rgba(23, 51, 36, .18) 100%);
+    pointer-events: none;
+}
+
+.product-img-wrap .tag {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: rgba(255, 255, 255, .88);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(181, 106, 132, .25);
+    color: #b56a84;
+    font-size: 10px;
+    letter-spacing: .15em;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 999px;
+    margin: 0;
+    font-family: 'Jost', sans-serif;
+}
+
+.product-body {
+    padding: 20px 22px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.product-body h3 {
+    font-family: 'Montserrat', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #173324;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.product-desc {
+    font-size: 13.5px;
+    font-family: 'Montserrat';
+    color: #6d8375;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.view-collection-btn {
+    margin-top: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Montserrat';
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: .06em;
+    color: #173324;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    position: relative;
+    width: fit-content;
+}
+
+.view-collection-btn::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #173324;
+    transition: width .3s ease;
+}
+
+.product-card:hover .view-collection-btn::after {
+    width: 100%;
+}
+
+.arrow-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #173324;
+    color: #f7ecdf;
+    display: grid;
+    place-items: center;
+    transition: transform .3s ease, background .3s ease;
+    flex-shrink: 0;
+}
+
+.product-card:hover .arrow-circle {
+    transform: translateX(4px);
+    background: #b56a84;
+}
+
+/* =========================
+   Responsive
+========================= */
+@media (max-width: 1100px) {
+    .bouquets-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .bouquets-hero {
+        padding: 40px 22px 30px;
+    }
+
+    .bouquets-hero h1 {
+        font-size: 42px;
+    }
+
+    .bouquets-grid {
+        grid-template-columns: 1fr;
+    }
+}

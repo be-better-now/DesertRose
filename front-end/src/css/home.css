@@ -61,7 +61,10 @@ a{
             radial-gradient(circle at bottom right, rgba(212,120,146,.10), transparent 30%),
             linear-gradient(135deg,#f8f3e9,#f6efe2,#f9f7f1);
     position:relative;
-    overflow:hidden;
+
+    /* FIX: allow dropdown to overflow vertically */
+    overflow-x:hidden;
+    overflow-y:visible;
 }
 
 
