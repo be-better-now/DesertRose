@@ -26,19 +26,19 @@ const PETALS = Array.from({ length: 12 }, (_, i) => ({
 const products = [
     {
         name: "Desert Rose Classic",
-        desc: "Soft blush roses with eucalyptus leaves",
+        desc: "Sự hòa quyện tinh tế giữa sắc hồng dịu dàng và lá bạch đàn thanh nhã, mang đến vẻ đẹp nhẹ nhàng nhưng đầy cuốn hút",
         tag: "Best Seller",
         img: "/images/rose1.jpg"
     },
     {
         name: "Golden Garden Bloom",
-        desc: "Luxury bouquet for elegant moments",
+        desc: "Thiết kế hoa cao cấp tôn vinh những khoảnh khắc trang trọng và đẳng cấp",
         tag: "Premium",
         img: "/images/rose2.jpg"
     },
     {
         name: "Spring Whisper",
-        desc: "Fresh pastel flowers, gentle fragrance",
+        desc: "Những gam màu pastel dịu nhẹ kết hợp hương thơm tinh khiết, gợi lên cảm giác trong trẻo của mùa xuân",
         tag: "New",
         img: "/images/rose3.jpg"
     }
@@ -92,17 +92,17 @@ export default function Home() {
                         </h1>
 
                         <p className="hero-desc">
-                            Elegant flowers crafted with love. Bring beauty,
-                            fragrance and emotion into every occasion.
+                            Những bó hoa thanh lịch được kết tinh bằng cả tình yêu thương. 
+                            Mang vẻ đẹp, hương thơm và cảm xúc trong mỗi khoảnh khắc.
                         </p>
 
                         <div className="hero-actions">
                             <button className="primary-btn">
-                                Shop Now <ArrowRight size={16} />
+                                Đặt Hoa Ngay <ArrowRight size={16} />
                             </button>
 
-                            <button className="ghost-btn">
-                                View Collection
+                            <button className="ghost-btn" onClick={() => navigate("/bouquets")}>
+                                Xem Bộ Sưu Tập
                             </button>
                         </div>
 
@@ -139,20 +139,20 @@ export default function Home() {
                 <div className="container features-inner">
                     <div className="feature-box">
                         <Truck size={24} />
-                        <h4>Fast Delivery</h4>
-                        <p>Fresh flowers delivered same day</p>
+                        <h4>Vận Chuyển Hỏa Tốc</h4>
+                        <p>Mỗi bó hoa được nâng niu và trao gửi đúng khoảnh khắc</p>
                     </div>
 
                     <div className="feature-box">
                         <Heart size={24} />
-                        <h4>Made with Love</h4>
-                        <p>Handcrafted premium bouquets</p>
+                        <h4>Chế Tác Trọn Tâm Huyết</h4>
+                        <p>Từng thiết kế là sự kết hợp của cảm xúc và nghệ thuật thủ công</p>
                     </div>
 
                     <div className="feature-box">
                         <Sparkles size={24} />
-                        <h4>Luxury Style</h4>
-                        <p>Elegant wrapping & design</p>
+                        <h4>Thẩm Mỹ Sang Trọng</h4>
+                        <p>Phong cách thanh lịch với dấu ấn tinh tế trong từng chi tiết</p>
                     </div>
                 </div>
             </section>
@@ -161,8 +161,8 @@ export default function Home() {
             <section className="products">
                 <div className="container">
                     <div className="section-head">
-                        <p>OUR COLLECTION</p>
-                        <h2>Popular Bouquets</h2>
+                        <p>BỘ SƯU TẬP</p>
+                        <h2>Những Bó Hoa Được Yêu Thích</h2>
                     </div>
 
                     <div className="product-grid">
@@ -178,7 +178,7 @@ export default function Home() {
                                     <p className="product-desc">{item.desc}</p>
 
                                     <button className="view-collection-btn">
-                                        View Collection
+                                        Khám Phá Bộ Sưu Tập
                                         <span className="arrow-circle">
                                             <ArrowRight size={14} />
                                         </span>

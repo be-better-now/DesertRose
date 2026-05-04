@@ -120,6 +120,7 @@ a{
     font-size:16px;
     line-height:1.8;
     color:#6d8375;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .hero-actions{
@@ -127,13 +128,14 @@ a{
     display:flex;
     gap:16px;
     justify-content:center;
+    font-family: 'Montserrat'
 }
 
 .primary-btn,
 .ghost-btn{
     padding:15px 24px;
     border-radius:999px;
-    font-family:'Jost',sans-serif;
+    font-family: 'Montserrat';
     border:none;
     cursor:pointer;
     transition:.25s;
@@ -209,11 +211,13 @@ a{
     margin-top:12px;
     margin-bottom:8px;
     color:#173324;
+    font-family: 'Montserrat';
 }
 
 .feature-box p{
     color:#728579;
     font-size:14px;
+    font-family: 'Montserrat';
 }
 
 /* =========================
@@ -244,6 +248,7 @@ a{
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:28px;
+    align-items:stretch;
 }
 
 /* ── Card shell ── */
@@ -257,6 +262,7 @@ a{
     cursor:pointer;
     display:flex;
     flex-direction:column;
+    height:100%;
 }
 
 .product-card:hover{
@@ -315,6 +321,7 @@ a{
     padding:22px 24px 24px;
     display:flex;
     flex-direction:column;
+    height: 100%;
     gap:8px;
     flex:1;
 }
@@ -333,11 +340,15 @@ a{
     color:#6d8375;
     line-height:1.7;
     margin:0;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+    min-height:60px;
 }
 
 /* ── View Collection link ── */
 .view-collection-btn{
-    margin-top:14px;
+    
     display:inline-flex;
     align-items:center;
     gap:8px;
@@ -352,6 +363,7 @@ a{
     cursor:pointer;
     position:relative;
     width:fit-content;
+    margin-top:auto;
 }
 
 .view-collection-btn::after{
