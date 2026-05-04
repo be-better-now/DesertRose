@@ -1,34 +1,82 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@200;300;400;500&display=swap');
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 /* ─── Keyframes ─── */
 @keyframes petalFall {
-    0%   { transform: translateY(-30px) rotate(0deg)   translateX(0px);   opacity: 0; }
-    8%   { opacity: 0.75; }
-    50%  { transform: translateY(48vh)  rotate(380deg)  translateX(28px);  }
-    92%  { opacity: 0.35; }
-    100% { transform: translateY(102vh) rotate(740deg)  translateX(-18px); opacity: 0; }
+    0% {
+        transform: translateY(-30px) rotate(0deg) translateX(0px);
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 0.75;
+    }
+
+    50% {
+        transform: translateY(48vh) rotate(380deg) translateX(28px);
+    }
+
+    92% {
+        opacity: 0.35;
+    }
+
+    100% {
+        transform: translateY(102vh) rotate(740deg) translateX(-18px);
+        opacity: 0;
+    }
 }
 
 @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(28px); }
-    to   { opacity: 1; transform: translateY(0);    }
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes floatBob {
-    0%, 100% { transform: translateY(0px);  }
-    50%      { transform: translateY(-9px); }
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-9px);
+    }
 }
 
 @keyframes revealLine {
-    from { transform: scaleX(0); }
-    to   { transform: scaleX(1); }
+    from {
+        transform: scaleX(0);
+    }
+
+    to {
+        transform: scaleX(1);
+    }
 }
 
 @keyframes spinIn {
-    from { transform: rotate(-120deg) scale(0.3); opacity: 0; }
-    to   { transform: rotate(0deg)   scale(1);   opacity: 1; }
+    from {
+        transform: rotate(-120deg) scale(0.3);
+        opacity: 0;
+    }
+
+    to {
+        transform: rotate(0deg) scale(1);
+        opacity: 1;
+    }
 }
 
 /* ─── Petal ─── */
@@ -43,8 +91,8 @@
 
 /* ─── Botanical icon ─── */
 .botanical-icon {
-    animation: spinIn 1s cubic-bezier(.34,1.56,.64,1) forwards,
-    floatBob 5s ease-in-out 1s infinite;
+    animation: spinIn 1s cubic-bezier(.34, 1.56, .64, 1) forwards,
+        floatBob 5s ease-in-out 1s infinite;
     display: block;
 }
 
@@ -87,8 +135,13 @@
     transition: border-color 0.3s ease;
 }
 
-.f-input::placeholder { color: #B8C8B8; }
-.f-input:focus        { border-bottom-color: transparent; }
+.f-input::placeholder {
+    color: #B8C8B8;
+}
+
+.f-input:focus {
+    border-bottom-color: transparent;
+}
 
 .f-bar {
     position: absolute;
@@ -103,7 +156,9 @@
     pointer-events: none;
 }
 
-.f-input:focus ~ .f-bar { transform: scaleX(1); }
+.f-input:focus~.f-bar {
+    transform: scaleX(1);
+}
 
 /* ─── Button ─── */
 .btn-enter {
@@ -127,14 +182,25 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.07), transparent);
     transform: translateX(-100%);
     transition: transform 0.5s ease;
 }
 
-.btn-enter:hover::after  { transform: translateX(100%); }
-.btn-enter:hover         { background: #284A38; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(28,52,40,0.30); }
-.btn-enter:active        { transform: translateY(0); box-shadow: none; }
+.btn-enter:hover::after {
+    transform: translateX(100%);
+}
+
+.btn-enter:hover {
+    background: #284A38;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(28, 52, 40, 0.30);
+}
+
+.btn-enter:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
 
 /* ─── Aux links ─── */
 .aux {
@@ -146,7 +212,10 @@
     letter-spacing: 0.04em;
     transition: color 0.2s;
 }
-.aux:hover { color: #1C3428; }
+
+.aux:hover {
+    color: #1C3428;
+}
 
 /* ─── Social button ─── */
 .social-btn {
@@ -163,10 +232,18 @@
     transition: background 0.25s ease, color 0.25s ease;
 }
 
-.social-btn:hover { background: #EEE6D8; color: #1C3428; }
+.social-btn:hover {
+    background: #EEE6D8;
+    color: #1C3428;
+}
 
 /* ─── Responsive ─── */
 @media (max-width: 768px) {
-    .botanical-panel { display: none !important; }
-    .login-side       { width: 100% !important;   }
+    .botanical-panel {
+        display: none !important;
+    }
+
+    .login-side {
+        width: 100% !important;
+    }
 }
