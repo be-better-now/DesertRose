@@ -319,9 +319,8 @@ a{
 /* ── Card body ── */
 .product-body{
     padding:22px 24px 24px;
-    display:flex;
-    flex-direction:column;
-    height: 100%;
+    display: grid;                          /* ← đổi flex → grid */
+    grid-template-rows: auto 1fr auto;      /* ← dòng này mới có tác dụng */
     gap:8px;
     flex:1;
 }
@@ -347,24 +346,24 @@ a{
 }
 
 /* ── View Collection link ── */
-.view-collection-btn{
-    
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    font-family:'Jost',sans-serif;
-    font-size:13px;
-    font-weight:500;
-    letter-spacing:.06em;
-    color:#173324;
-    background:none;
-    border:none;
-    padding:0;
-    cursor:pointer;
-    position:relative;
-    width:fit-content;
-    margin-top:auto;
+.view-collection-btn {
+    display: flex;          /* ← đổi inline-flex → flex */
+    align-items: center;
+    gap: 8px;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: .06em;
+    color: #173324;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    position: relative;
+    width: fit-content;
+    line-height: 1;         /* ← thêm dòng này */
 }
+
 
 .view-collection-btn::after{
     content:'';

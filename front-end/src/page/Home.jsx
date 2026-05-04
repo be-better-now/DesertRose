@@ -26,19 +26,19 @@ const PETALS = Array.from({ length: 12 }, (_, i) => ({
 const products = [
     {
         name: "Desert Rose Classic",
-        desc: "Sự hòa quyện tinh tế giữa sắc hồng dịu dàng và lá bạch đàn thanh nhã, mang đến vẻ đẹp nhẹ nhàng nhưng đầy cuốn hút",
+        desc: "Sắc hồng dịu dàng hòa quyện cùng lá bạch đàn thanh nhã. Từng cánh hoa mang vẻ đẹp tinh tế và mềm mại. Tạo nên cảm giác nhẹ nhàng nhưng đầy cuốn hút.",
         tag: "Best Seller",
         img: "/images/rose1.jpg"
     },
     {
         name: "Golden Garden Bloom",
-        desc: "Thiết kế hoa cao cấp tôn vinh những khoảnh khắc trang trọng và đẳng cấp",
+        desc: "Thiết kế hoa cao cấp dành cho những dịp đặc biệt. Từng chi tiết được chăm chút với sự tinh xảo. Mang đến vẻ đẹp sang trọng và đầy đẳng cấp.",
         tag: "Premium",
         img: "/images/rose2.jpg"
     },
     {
         name: "Spring Whisper",
-        desc: "Những gam màu pastel dịu nhẹ kết hợp hương thơm tinh khiết, gợi lên cảm giác trong trẻo của mùa xuân",
+        desc: "Gam màu pastel nhẹ nhàng gợi cảm giác thư thái. Hương thơm tinh khiết lan tỏa đầy tinh tế. Mang đến nét trong trẻo của những ngày mùa xuân.",
         tag: "New",
         img: "/images/rose3.jpg"
     }

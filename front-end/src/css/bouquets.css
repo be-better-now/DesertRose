@@ -3,6 +3,29 @@
 /* =========================
    Page
 ========================= */
+
+@keyframes petalFall{
+    0%{
+        transform:translateY(-40px) rotate(0deg);
+        opacity:0;
+    }
+    10%{opacity:.75;}
+    100%{
+        transform:translateY(110vh) translateX(40px) rotate(720deg);
+        opacity:0;
+    }
+}
+
+.petal{
+    position:fixed;
+    top:-30px;
+    border-radius:50% 0 50% 0;
+    background:rgba(212,120,146,.45);
+    animation:petalFall linear infinite;
+    z-index:1;
+    pointer-events:none;
+}
+
 .bouquets-page {
     min-height: 100vh;
     background:

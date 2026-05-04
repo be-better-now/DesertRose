@@ -97,6 +97,8 @@ export default function Header() {
                     Home
                 </a>
 
+                
+
                 <div
                     className="nav-dropdown"
                     onMouseEnter={() => { setOpen(true); requestAnimationFrame(measure); }}
@@ -166,7 +168,12 @@ export default function Header() {
                         </div>
                     )}
                 </div>
+                
                 <a href="#" onClick={(e) => e.preventDefault()}>Contact</a>
+
+                <a href="/about" onClick={(e) => { e.preventDefault(); navigate("/about"); }}>
+                    About
+                </a>
             </nav>
 
             {/* Right */}
@@ -187,6 +194,10 @@ export default function Header() {
                     </button>
                 )}
             </div>
+
+
+
+
 
         </header>
     );

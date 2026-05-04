@@ -3,6 +3,14 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { ArrowRight } from "lucide-react";
 
+const PETALS = Array.from({ length: 12 }, (_, i) => ({
+    id: i,
+    left: `${Math.random() * 100}%`,
+    delay: `${Math.random() * 8}s`,
+    dur: `${8 + Math.random() * 6}s`,
+    size: `${10 + Math.random() * 10}px`
+}));
+
 const collections = [
     {
         title: "Bó Hoa Tươi",
@@ -64,6 +72,20 @@ export default function Bouquets() {
     return (
         <div className="bouquets-page">
             <Header />
+
+            {PETALS.map((p) => (
+                <span
+                    key={p.id}
+                    className="petal"
+                    style={{
+                        left: p.left,
+                        animationDelay: p.delay,
+                        animationDuration: p.dur,
+                        width: p.size,
+                        height: p.size
+                    }}
+                />
+            ))}
 
             <section className="bouquets-hero">
                 <p className="bouquets-mini">OUR COLLECTION</p>
