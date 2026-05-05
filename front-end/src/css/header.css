@@ -46,7 +46,7 @@
     gap: 36px;
 }
 
-.home-header nav > a,
+.home-header nav>a,
 .nav-dropdown-trigger {
     font-family: 'Jost', sans-serif;
     font-size: 13px;
@@ -58,7 +58,7 @@
     transition: color .2s ease;
 }
 
-.home-header nav > a:hover,
+.home-header nav>a:hover,
 .nav-dropdown-trigger:hover {
     color: #173324;
 }
@@ -117,8 +117,15 @@
 }
 
 @keyframes dropIn {
-    from { opacity: 0; transform: translateX(-50%) translateY(-6px); }
-    to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
 }
 
 /* Section label */
@@ -227,7 +234,9 @@
     .home-header nav {
         display: none;
     }
-}@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
 
 /* =========================
    Header
@@ -245,11 +254,19 @@
 /* =========================
    Brand
 ========================= */
+
+.logo-img {
+    width: 40px;     /* chỉnh tùy mắt m */
+    height: 40px;
+    object-fit: contain;
+}
+
 .brand {
     display: flex;
+    font-family: 'Cormorant Garamond', serif;
     align-items: center;
     gap: 10px;
-    color: #173324;
+    color: #b56a84;
     cursor: pointer;
     user-select: none;
 }
@@ -261,9 +278,11 @@
 
 .brand span {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 30px;
+    font-size: 50px;
     font-weight: 400;
     line-height: 1;
+    font-weight: bolder;
+    font-style: italic;
 }
 
 /* =========================
@@ -275,7 +294,7 @@
     gap: 36px;
 }
 
-.home-header nav > a,
+.home-header nav>a,
 .nav-dropdown-trigger {
     font-family: 'Jost', sans-serif;
     font-size: 13px;
@@ -287,7 +306,7 @@
     transition: color .2s ease;
 }
 
-.home-header nav > a:hover,
+.home-header nav>a:hover,
 .nav-dropdown-trigger:hover {
     color: #173324;
 }
@@ -346,8 +365,15 @@
 }
 
 @keyframes dropIn {
-    from { opacity: 0; transform: translateX(-50%) translateY(-6px); }
-    to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
 }
 
 /* Items */

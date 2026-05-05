@@ -87,7 +87,7 @@ export default function Header() {
 
             {/* Brand */}
             <div className="brand" onClick={() => navigate("/")}>
-                <Flower2 size={20} />
+                <img src="/images/logo.png" alt="logo" className="logo-img" />
                 <span>Desert Rose</span>
             </div>
 
@@ -143,7 +143,7 @@ export default function Header() {
                         ref={triggerRefOcc}
                         href="#"
                         className="nav-dropdown-trigger"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={(e) => { e.preventDefault(); navigate("/occasions"); }}
                     >
                         Occasions <ChevronDown size={14} />
                     </a>
@@ -160,7 +160,7 @@ export default function Header() {
                                     key={t}
                                     href="#"
                                     role="menuitem"
-                                    onClick={(e) => e.preventDefault()}
+                                    onClick={(e) => { e.preventDefault(); navigate("/occasions"); }}
                                 >
                                     {t}
                                 </a>
@@ -169,7 +169,7 @@ export default function Header() {
                     )}
                 </div>
                 
-                <a href="#" onClick={(e) => e.preventDefault()}>Contact</a>
+                <a href="#" onClick={(e) => { e.preventDefault(); navigate("/contact"); }}>Contact</a>
 
                 <a href="/about" onClick={(e) => { e.preventDefault(); navigate("/about"); }}>
                     About
