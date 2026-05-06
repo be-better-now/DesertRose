@@ -1,16 +1,16 @@
 spring:
   application:
-    name: desertflower
+    name: desertrose
 
   datasource:
-    url: jdbc:sqlserver://localhost:1433;databaseName=DESERT_ROSE;encrypt=true;trustServerCertificate=true
+    url: "jdbc:sqlserver://localhost:1433;databaseName=DESERT_ROSE;encrypt=true;trustServerCertificate=true"
     username: sa
-    password: 12345
+    password: "12345"
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
 
   jpa:
     hibernate:
-      ddl-auto: update   # dev thì dùng update, production nên dùng validate
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
@@ -21,21 +21,16 @@ spring:
     serialization:
       FAIL_ON_EMPTY_BEANS: false
 
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            scope:
+              - email
+              - profile
+
 server:
   port: 8080
-
-## JWT config (tự custom trong code)
-#jwt:
-#  secret: mysecretkey1234567890
-#  expiration: 86400000  # 1 ngày (ms)
-#
-## logging
-#logging:
-#  level:
-#    org.springframework: INFO
-#    org.hibernate.SQL: DEBUG
-#    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
-#
-# CORS (nếu cần)
-cors:
-  allowed-origins: http://localhost:5173

@@ -35,6 +35,7 @@ public class AuthServiceImpl implements AuthService {
         UserResponse response = new UserResponse();
         response.setUserId(user.getUserId());
         response.setUsername(user.getUsername());
+        response.setFullName(user.getFullName());
         response.setEmail(user.getEmail());
         response.setRole(user.getRole());
 
@@ -49,7 +50,7 @@ public class AuthServiceImpl implements AuthService {
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),
                 user.getPassword(),
-                List.of(new SimpleGrantedAuthority("ROLE_USER"))
+                List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole().name()))
         );
     }
 
@@ -63,15 +64,17 @@ public class AuthServiceImpl implements AuthService {
 
         Users user = new Users();
         user.setUsername(request.getUsername());
+        user.setFullName(request.getFullName());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setEmail(request.getEmail());
-        user.setRole(Role.KHACH_HANG_MEMBER);
+        user.setRole(Role.USER);
 
         Users savedUser = usersRepository.save(user);
 
         UserResponse response = new UserResponse();
         response.setUserId(savedUser.getUserId());
         response.setUsername(savedUser.getUsername());
+        response.setFullName(savedUser.getFullName());
         response.setEmail(savedUser.getEmail());
         response.setRole(savedUser.getRole());
 

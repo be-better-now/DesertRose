@@ -9,6 +9,8 @@ export default function Header() {
     const [open, setOpen] = useState(false);
     const [menuPos, setMenuPos] = useState({ left: 0, top: 0 });
     const triggerRef = useRef(null);
+    const formatName = (name) =>
+    name?.charAt(0).toUpperCase() + name?.slice(1);
 
     const [openOcc, setOpenOcc] = useState(false);
     const [menuPosOcc, setMenuPosOcc] = useState({ left: 0, top: 0 });
@@ -36,13 +38,29 @@ export default function Header() {
     ], []);
 
     useEffect(() => {
-        const data = localStorage.getItem("user");
-        if (data) setUser(JSON.parse(data));
+        const loadUser = () => {
+            const data = localStorage.getItem("user");
+            setUser(data ? JSON.parse(data) : null);
+        };
+
+        // load lần đầu
+        loadUser();
+
+        // nghe event login/logout
+        window.addEventListener("userChanged", loadUser);
+
+        return () => {
+            window.removeEventListener("userChanged", loadUser);
+        };
     }, []);
 
     const logout = () => {
         localStorage.removeItem("user");
         localStorage.removeItem("token");
+
+        // 🔥 báo Header update lại
+        window.dispatchEvent(new Event("userChanged"));
+
         navigate("/login");
     };
 
@@ -97,7 +115,7 @@ export default function Header() {
                     Home
                 </a>
 
-                
+
 
                 <div
                     className="nav-dropdown"
@@ -168,7 +186,7 @@ export default function Header() {
                         </div>
                     )}
                 </div>
-                
+
                 <a href="#" onClick={(e) => { e.preventDefault(); navigate("/contact"); }}>Contact</a>
 
                 <a href="/about" onClick={(e) => { e.preventDefault(); navigate("/about"); }}>
@@ -182,7 +200,7 @@ export default function Header() {
                     <>
                         <div className="user-chip">
                             <User size={15} />
-                            {user.username}
+                            {`Hello, ${user.fullName}!`}
                         </div>
                         <button className="logout-btn" onClick={logout} title="Logout">
                             <LogOut size={15} />

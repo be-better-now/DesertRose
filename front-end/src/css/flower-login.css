@@ -111,7 +111,7 @@
 
 .f-label {
     display: block;
-    font-family: 'Jost', sans-serif;
+    font-family: 'Monserrat', sans-serif;
     font-size: 10.5px;
     font-weight: 500;
     letter-spacing: 0.18em;
@@ -126,7 +126,7 @@
     background: transparent;
     border: none;
     border-bottom: 1px solid #CBBFA8;
-    font-family: 'Jost', sans-serif;
+    font-family: 'Monserrat', sans-serif;
     font-size: 15px;
     font-weight: 300;
     color: #1C3428;
@@ -167,7 +167,7 @@
     background: #1C3428;
     color: #EDE5D4;
     border: none;
-    font-family: 'Jost', sans-serif;
+    font-family: 'Monserrat', sans-serif;
     font-size: 11.5px;
     font-weight: 500;
     letter-spacing: 0.22em;
@@ -206,7 +206,7 @@
 .aux {
     color: #8A9E8A;
     text-decoration: none;
-    font-family: 'Jost', sans-serif;
+    font-family: 'Monserrat', sans-serif;
     font-size: 12.5px;
     font-weight: 300;
     letter-spacing: 0.04em;
@@ -223,7 +223,7 @@
     padding: 11px 0;
     background: transparent;
     border: 0.5px solid #C8B898;
-    font-family: 'Jost', sans-serif;
+    font-family: 'Monserrat', sans-serif;
     font-size: 12px;
     font-weight: 400;
     color: #5A7A5A;
