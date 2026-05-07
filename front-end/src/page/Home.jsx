@@ -50,7 +50,9 @@ export default function Home() {
 
     useEffect(() => {
         const data = localStorage.getItem("user");
-        if (data) setUser(JSON.parse(data));
+        if (data && data !== "undefined") {
+            setUser(JSON.parse(data));
+        }
     }, []);
 
     const logout = () => {
@@ -92,7 +94,7 @@ export default function Home() {
                         </h1>
 
                         <p className="hero-desc">
-                            Những bó hoa thanh lịch được kết tinh bằng cả tình yêu thương. 
+                            Những bó hoa thanh lịch được kết tinh bằng cả tình yêu thương.
                             Mang vẻ đẹp, hương thơm và cảm xúc trong mỗi khoảnh khắc.
                         </p>
 

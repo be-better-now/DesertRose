@@ -75,9 +75,9 @@ export default function Footer() {
                     </p>
 
                     <div className="footer-legal">
-                        <a href="#">Privacy</a>
+                        <a href="/terms&privacy">Privacy</a>
                         <span className="footer-dot" aria-hidden="true">•</span>
-                        <a href="#">Terms</a>
+                        <a href="/terms&privacy">Terms</a>
                     </div>
                 </div>
             </div>
